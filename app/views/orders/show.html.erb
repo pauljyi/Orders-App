@@ -1,0 +1,66 @@
+<body id="order_show">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="#" style="color:#FE642D; font-size: 25px; text-align: center; padding-top: 20px;">OrderOut</a>
+          </div>
+          <ul class="breadcrumb" style="text-align:right;">
+            <li style="padding-top:10px;"><a href="/groups/">My Groups</a></li>
+            <li style="padding-bottom:-15px;"><%= link_to 'Member Order', '/group_members/'+ @order.group_member.id.to_s + '/orders' %></li>
+            <li>Order View</li>
+          </ul>
+      </div>
+      <!-- /.container -->
+  </nav>
+
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="gray_box">
+  <h1 class="index_listing">
+  <strong>Restaurant:</strong>
+    <%= @order.Restaurant %>
+  </h1>
+  <p>
+    <strong>Menu item:</strong>
+    <%= @order.Menu_Item %>
+  </p>
+
+  <p>
+    <strong>Alterations:</strong>
+    <%= @order.Alterations %>
+  </p>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <% if current_user %>
+        <p>
+          <strong>Rate your meal:</strong>
+        </p>
+        <%= rating_for @order, "Menu_Item", :disable_after_rate => false, :half_show => false, :space => true, :order_avg => false %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+
+
+  <br>
+  <div>
+    <%= facebook_button %>
+  <br><br>
+    <%= twitter_button %>
+  </div>
+  <br>
+  <br>
+
+  <!-- <%= link_to 'Edit', edit_order_path %> | -->
+  <%= link_to 'Back', '/group_members/'+ @order.group_member.id.to_s + '/orders' %>
+</div>
+</body>

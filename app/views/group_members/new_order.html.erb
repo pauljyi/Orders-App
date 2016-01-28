@@ -1,0 +1,61 @@
+<body id="new_order">
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+      <div class="container topnav">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand topnav" href="#" style="color:#FE642D; font-size: 25px;">OrderOut</a>
+          </div>
+          <ul class="breadcrumb" style="text-align:right;">
+            <li style="padding-top:10px;"><a href="/groups/">My Groups</a></li>
+            <li style="padding-top:10px;"><%= link_to 'Group Members', '/groups/'+ @group_member.group.id.to_s %></li>
+            <li>New Order</li>
+          </ul>
+      </div>
+      <!-- /.container -->
+  </nav>
+  
+  <div class="gray_box">
+  <h1 class="index_listing">New Order</h1>
+  <%= form_for(@order, :url => "/group_members/" + @group_member.id.to_s + "/create_order") do |f| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :Restaurant %><br>
+      <%= f.text_field :Restaurant %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Menu_Item %><br>
+      <%= f.text_field :Menu_Item %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Alterations %><br>
+      <%= f.text_area :Alterations %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', '/groups/'+ @group_member.group.id.to_s %>
+  </div>
+</body>
